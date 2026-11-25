@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rehobot — Soluciones con IA para negocios</title>
+<meta name="description" content="Agentes de atención para WhatsApp e Instagram, automatizaciones, páginas web y contenido con IA para negocios de Argentina y España. Agenda un diagnóstico gratis.">
+<meta name="theme-color" content="#07130F">
+<meta property="og:title" content="Rehobot — Soluciones con IA para negocios">
+<meta property="og:description" content="Agentes de atención para WhatsApp e Instagram, automatizaciones, páginas web y contenido con IA para negocios de Argentina y España. Agenda un diagnóstico gratis.">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" href="assets/isologo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800&amp;family=Inter:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;family=JetBrains+Mono:wght@500&amp;display=swap">
+<style>
+@property --hue{syntax:'<number>';inherits:true;initial-value:0}
+@property --rotate{syntax:'<number>';inherits:true;initial-value:0}
+@property --bg-y{syntax:'<number>';inherits:true;initial-value:0}
+@property --bg-x{syntax:'<number>';inherits:true;initial-value:0}
+@property --glow-translate-y{syntax:'<number>';inherits:true;initial-value:0}
+@property --bg-size{syntax:'<number>';inherits:true;initial-value:0}
+@property --glow-opacity{syntax:'<number>';inherits:true;initial-value:0}
+@property --glow-blur{syntax:'<number>';inherits:true;initial-value:0}
+@property --glow-scale{syntax:'<number>';inherits:true;initial-value:2}
+@property --glow-radius{syntax:'<number>';inherits:true;initial-value:2}
+@property --white-shadow{syntax:'<number>';inherits:true;initial-value:0}
+html{scroll-behavior:smooth;background:#07130F}
+body{margin:0;background:#07130F;color:#F3F7F4;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#35C8B4;text-decoration:none}a:hover{color:#C2F2E4}
+::selection{background:#35C8B4;color:#07130F}
+:focus-visible{outline:2px solid #E3FF00;outline-offset:3px}
+section[id]{scroll-margin-top:90px}
+@keyframes fade-in{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes fade-up{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes shine{0%,68%{background-position:100% 0;animation-timing-function:ease-in-out}100%{background-position:-100% 0}}
+@keyframes blobA{to{transform:translate(18vw,8vh)}}
+@keyframes blobB{to{transform:translate(-16vw,10vh)}}
+@keyframes blobC{to{transform:translate(8vw,-8vh)}}
+@keyframes smoke{0%{transform:translateY(0);opacity:0}40%{opacity:.35}100%{transform:translateY(-60px);opacity:0}}
+@keyframes neon{0%,24%,46%,73%,96%{box-shadow:0 0 .5vw .075vw #21F4BD}12%,28%,41%,63%,75%,82%,98%{box-shadow:0 0 2.5vw .375vw #21F4BD}6%,32%,57%{box-shadow:0 0 1.3vw .195vw #21F4BD}18%,52%,88%{box-shadow:0 0 3.5vw .525vw #21F4BD}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes ring{0%{transform:scale(1);opacity:.7}30%,100%{transform:scale(1.8);opacity:0}}
+@keyframes hue{0%{--hue:172}44%{--hue:160}47%{--hue:68}53%{--hue:68}56%{--hue:160}100%{--hue:172}}
+@keyframes rotate-bg{0%{--bg-x:0;--bg-y:0}25%{--bg-x:100;--bg-y:0}50%{--bg-x:100;--bg-y:100}75%{--bg-x:0;--bg-y:100}100%{--bg-x:0;--bg-y:0}}
+@keyframes rotate{from{--rotate:-70;--glow-translate-y:-65}25%{--glow-translate-y:-65}50%{--glow-translate-y:-65}75%{--glow-translate-y:-65}to{--rotate:290;--glow-translate-y:-65}}
+@keyframes shadow-pulse{0%,24%,46%,73%,96%{--white-shadow:.5}12%,28%,41%,63%,75%,82%,98%{--white-shadow:2.5}6%,32%,57%{--white-shadow:1.3}18%,52%,88%{--white-shadow:3.5}}
+.nl{position:relative;color:#8FA9A0;transition:color .25s}.nl:hover{color:#F3F7F4}
+.nl::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:#35C8B4;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.22,1,.36,1)}.nl:hover::after{transform:scaleX(1)}
+.mv-ic{transition:transform .3s}.mv:hover .mv-ic,.mv:focus-visible .mv-ic{transform:translateX(4px)}
+.duo img{transition:filter .6s}.duo .ov{transition:opacity .6s}.duo:hover img{filter:none!important}.duo:hover .ov{opacity:0}
+.mq:hover .mqt{animation-play-state:paused}
+.fab .tip{opacity:0;transform:translateX(6px);transition:opacity .25s,transform .25s}.fab:hover .tip{opacity:1;transform:none}
+.hz{left:50%;top:calc(100% - 90px);height:500px;width:700px}
+@media(min-width:768px){.hz{width:1100px}}
+@media(min-width:1024px){.hz{top:calc(100% - 150px);height:750px;width:140%}}
+.nav-d{display:none!important}.nav-m{display:flex}
+@media(min-width:900px){.nav-d{display:flex!important}.nav-m{display:none!important}}
+@media(max-width:639px){.btn-w{width:100%;box-sizing:border-box}}
+.steps{display:grid;grid-template-columns:1fr;gap:2.75rem;position:relative}
+.stp-line{position:absolute;left:27px;top:28px;bottom:28px;width:1px;background:#126650}
+.stp-fill{position:absolute;inset:0;transform:scaleY(var(--p,0));transform-origin:top;background:linear-gradient(#35C8B4,#E3FF00)}
+.stp{display:grid;grid-template-columns:56px 1fr;gap:1.25rem;align-items:start}
+@media(min-width:1024px){.steps{grid-template-columns:repeat(4,1fr);gap:2rem}.stp-line{left:12.5%;right:12.5%;top:28px;bottom:auto;width:auto;height:1px}.stp-fill{transform:scaleX(var(--p,0));transform-origin:left;background:linear-gradient(90deg,#35C8B4,#E3FF00)}.stp{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.gc{--card-color:#07130F;--text-color:#8FA9A0;--card-radius:max(24px,3.6vw);--border-width:3px;--bg-size:1;--hue:170;--hue-speed:1;--rotate:0;--animation-speed:4s;--interaction-speed:.55s;--glow-scale:1.5;--scale-factor:1;--glow-blur:6;--glow-opacity:1;--glow-radius:100;--glow-rotate-unit:1deg;position:relative;isolation:isolate;--glow-opacity:.7;display:flex;align-items:center;justify-content:center;width:100%}
+.gc.st{--glow-opacity:.5;--animation-speed:8s;--card-radius:24px}
+.gc .glow-content{position:relative;width:100%;box-sizing:border-box;background:var(--card-color);border-radius:calc(var(--card-radius)*.9);color:var(--text-color);transition:color .4s}
+.gc .glow-content::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(100% + var(--border-width));height:calc(100% + var(--border-width));border-radius:calc(var(--card-radius)*.9);box-shadow:0 0 20px black;mix-blend-mode:color-burn;z-index:-1;background:hsl(0deg 0% 16%) radial-gradient(30% 30% at calc(var(--bg-x)*1%) calc(var(--bg-y)*1%),hsl(calc(var(--hue)*var(--hue-speed)*1deg) 100% 90%) calc(0%*var(--bg-size)),hsl(calc(var(--hue)*var(--hue-speed)*1deg) 100% 80%) calc(20%*var(--bg-size)),hsl(calc(var(--hue)*var(--hue-speed)*1deg) 100% 60%) calc(40%*var(--bg-size)),transparent 100%);animation:hue var(--animation-speed) linear infinite alternate,rotate-bg var(--animation-speed) linear infinite;transition:--bg-size var(--interaction-speed) ease}
+.gc .glow{position:absolute;z-index:-2;width:40%;height:40%;animation:rotate var(--animation-speed) linear infinite;transform:rotateZ(calc(var(--rotate)*var(--glow-rotate-unit)));transform-origin:center;border-radius:calc(var(--glow-radius)*10vw)}
+.gc .glow::after{content:'';position:absolute;z-index:-2;filter:blur(calc(var(--glow-blur)*10px));width:130%;height:130%;left:-15%;top:-15%;background:hsl(calc(var(--hue)*var(--hue-speed)*1deg) 85% 55%);border-radius:calc(var(--glow-radius)*10vw);animation:hue var(--animation-speed) linear infinite alternate;transform:scaleY(calc(var(--glow-scale)*var(--scale-factor)/1.1)) scaleX(calc(var(--glow-scale)*var(--scale-factor)*1.2)) translateY(calc(var(--glow-translate-y)*1%));opacity:var(--glow-opacity);transition:--glow-translate-y var(--interaction-speed) ease,--glow-blur .5s ease,--glow-opacity .5s ease,--glow-scale .5s ease,--glow-radius .5s ease}
+.gc:not(.st):hover .glow-content,.gc.on .glow-content{mix-blend-mode:darken;--text-color:#F3F7F4;box-shadow:0 0 calc(var(--white-shadow)*1vw) calc(var(--white-shadow)*.15vw) rgb(255 255 255/20%);animation:shadow-pulse calc(var(--animation-speed)*2) linear infinite}
+.gc:not(.st):hover .glow-content::before,.gc.on .glow-content::before{--bg-size:15;animation-play-state:paused}
+.gc:not(.st):hover .glow,.gc.on .glow{--glow-blur:1.5;--glow-opacity:.6;--glow-scale:2.5;--glow-radius:0;--rotate:900;--glow-rotate-unit:0;--scale-factor:1.25;animation-play-state:paused}
+.gc:not(.st):hover .glow::after,.gc.on .glow::after{--glow-translate-y:0;animation-play-state:paused;transition:--glow-translate-y 0s ease,--glow-blur .05s ease,--glow-opacity .05s ease,--glow-scale .05s ease,--glow-radius .05s ease}
+.gc-fb .glow{display:none}.gc-fb .glow-content{box-shadow:0 0 60px rgba(53,200,180,.35)}
+@property --on{syntax:'<number>';inherits:true;initial-value:1}
+@keyframes smokeB{0%{transform:translateY(0);opacity:0}40%{opacity:.2}100%{transform:translateY(-60px);opacity:0}}
+@keyframes neonB{0%,24%,46%,73%,96%{box-shadow:0 0 4px .3px rgba(255,107,91,.55);opacity:.6}12%,28%,41%,63%,75%,82%,98%{box-shadow:0 0 18px 1.5px rgba(255,107,91,.55);opacity:1}6%,32%,57%{box-shadow:0 0 10px .8px rgba(255,107,91,.55);opacity:.85}18%,52%,88%{box-shadow:0 0 26px 2.1px rgba(255,107,91,.6);opacity:1}}
+@keyframes dotPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+@keyframes flip{0%,78%{transform:rotate(0)}100%{transform:rotate(180deg)}}
+@keyframes sand{to{stroke-dashoffset:-7}}
+@keyframes fadeP{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes shineSweep{from{transform:translateX(-120%)}to{transform:translateX(120%)}}
+@keyframes c1{0%,4%{opacity:0;transform:translateY(8px)}10%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+@keyframes c2{0%,22%{opacity:0;transform:translateY(8px)}27%,42%{opacity:1;transform:none}46%,100%{opacity:0}}
+@keyframes c3{0%,45%{opacity:0;transform:translateY(8px)}51%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+@keyframes tdot{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-3px);opacity:1}}
+@keyframes wb{0%{opacity:0;transform:translateY(8px)}10%,82%{opacity:1;transform:none}92%,100%{opacity:0;transform:none}}
+@keyframes wbtn{0%,30%{background:rgba(53,200,180,.25);box-shadow:none}40%,80%{background:#35C8B4;box-shadow:0 0 18px rgba(53,200,180,.7)}92%,100%{background:rgba(53,200,180,.25);box-shadow:none}}
+@keyframes an0{0%,2%{--on:0}5%,88%{--on:1}95%,100%{--on:0}}
+@keyframes an1{0%,25%{--on:0}29%,88%{--on:1}95%,100%{--on:0}}
+@keyframes an2{0%,50%{--on:0}54%,88%{--on:1}95%,100%{--on:0}}
+@keyframes an3{0%,75%{--on:0}79%,88%{--on:1}95%,100%{--on:0}}
+@keyframes aline{0%{transform:scaleX(0);opacity:1}75%,88%{transform:scaleX(1);opacity:1}96%,100%{transform:scaleX(1);opacity:0}}
+@keyframes apulse{0%{transform:translateX(0);opacity:0}3%{opacity:1}75%{transform:translateX(100%);opacity:1}80%,100%{transform:translateX(100%);opacity:0}}
+@keyframes feed{0%{opacity:0;transform:scale(.85)}8%,82%{opacity:1;transform:none}92%,100%{opacity:0;transform:none}}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+.pc{transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .4s}.pc:hover{transform:translateY(-6px);border-color:rgba(255,107,91,.28)!important}
+.pc-neon{animation:neonB 8s linear infinite}.pc:hover .pc-neon{animation:none;opacity:1;box-shadow:0 0 28px 3px rgba(255,107,91,.75)}
+.ic-dot{transform-box:fill-box;transform-origin:center;animation:dotPulse 2s ease-in-out infinite}.pc:hover .ic-dot{animation-duration:1s}
+.ic-shake{transform-box:view-box;transform-origin:22px 58px}.pc:hover .ic-shake{animation:shake .45s ease-in-out 3}
+.ic-flip{transform-box:view-box;transform-origin:36px 36px;animation:flip 4s cubic-bezier(.7,0,.3,1) infinite}.pc:hover .ic-flip{animation-duration:2s}
+.ic-sand{stroke-dasharray:3 4;animation:sand .6s linear infinite}.pc:hover .ic-sand{animation-duration:.3s}
+.ic-fade{animation:fadeP 3s ease-in-out infinite}.ic-fade2{animation-delay:.6s}.pc:hover .ic-fade{animation-duration:1.5s}
+.ic-slide{transition:transform .4s cubic-bezier(.22,1,.36,1)}.pc:hover .ic-slide{transform:translateX(6px)}
+.ic-bob{animation:bob 2s ease-in-out infinite}
+.c-aqua{--c:#21F4BD;--cr:33,244,189}.c-menta{--c:#35C8B4;--cr:53,200,180}.c-lima{--c:#E3FF00;--cr:227,255,0}.c-bruma{--c:#C2F2E4;--cr:194,242,228}
+.stab{position:relative;overflow:hidden;display:grid;grid-template-columns:48px minmax(0,1fr) 20px;gap:1rem;align-items:center;width:100%;padding:1.1rem 1.25rem 1.35rem;border-radius:18px;border:1px solid rgba(194,242,228,.06);background:transparent;opacity:.55;cursor:pointer;text-align:left;color:inherit;font:inherit;transition:all .4s cubic-bezier(.22,1,.36,1)}
+.stab:hover{opacity:.85;background:rgba(14,38,32,.5);transform:translateX(4px);border-color:rgba(194,242,228,.14)}
+.stab[data-on="1"]{opacity:1;transform:none;background:linear-gradient(135deg,rgba(var(--cr),.16) 0%,rgba(14,38,32,.7) 60%);border-color:var(--c);box-shadow:inset 0 1px 0 rgba(243,247,244,.08),0 0 0 1px rgba(var(--cr),.25),0 10px 50px -10px rgba(var(--cr),.45)}
+.t-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(194,242,228,.04);color:#8FA9A0;transition:all .4s cubic-bezier(.22,1,.36,1)}
+.stab[data-on="1"] .t-ic{background:var(--c);color:#07130F;box-shadow:0 0 24px rgba(var(--cr),.6)}
+.t-name{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.03em;line-height:1.2;color:#8FA9A0;transition:color .4s}
+.t-sub{font-size:.95rem;line-height:1.4;color:#8FA9A0;transition:color .4s}
+.stab[data-on="1"] .t-name{color:#F3F7F4}.stab[data-on="1"] .t-sub{color:var(--c)}
+.t-arr{display:flex;color:var(--c);opacity:0;transform:translate(-6px,6px);transition:all .4s cubic-bezier(.22,1,.36,1)}.stab[data-on="1"] .t-arr{opacity:1;transform:none}
+.t-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c);transform:scaleY(0);transform-origin:top;transition:transform .4s cubic-bezier(.22,1,.36,1)}.stab[data-on="1"] .t-bar{transform:scaleY(1)}
+.t-shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 30%,rgba(243,247,244,.13) 50%,transparent 70%);transform:translateX(-120%)}.stab[data-on="1"] .t-shine{animation:shineSweep .9s ease forwards}
+.t-prog{position:absolute;left:1.25rem;right:1.25rem;bottom:.6rem;height:2px;border-radius:2px;background:rgba(194,242,228,.06);overflow:hidden}
+.t-progf{position:absolute;inset:0;background:var(--c);transform:scaleX(0);transform-origin:left}
+.stab[data-on="1"] .t-progf{animation:prog 6s linear forwards}.stabs[data-run="0"] .t-progf{animation-play-state:paused}.stabs[data-auto="0"] .t-prog{display:none}
+.anode{--on:1;position:relative;width:48px;height:48px;box-sizing:border-box;border-radius:14px;display:grid;place-items:center;background:#0E2620;color:#E3FF00;border:1px solid rgba(227,255,0,calc(.15 + var(--on)*.85));box-shadow:0 0 calc(var(--on)*22px) rgba(227,255,0,.4)}
+.anode-ck{position:absolute;top:-6px;right:-6px;width:16px;height:16px;border-radius:50%;background:#E3FF00;color:#07130F;font-size:10px;font-weight:700;display:grid;place-items:center;opacity:var(--on);transform:scale(calc(.6 + var(--on)*.4))}
+.sol-grid{display:block}.stabs{display:none}
+.spanel{position:relative;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -1.5rem;padding:.5rem 7% 1rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}.spanel::-webkit-scrollbar{display:none}
+.sp{flex:0 0 86%;box-sizing:border-box;scroll-snap-align:center;display:flex;flex-direction:column;gap:1rem;padding:1.25rem;border-radius:22px;background:rgba(14,38,32,.5);border:1px solid rgba(194,242,228,.08);opacity:.5;transform:scale(.96);transition:opacity .4s,transform .4s cubic-bezier(.22,1,.36,1),border-color .4s,box-shadow .4s}
+.sp[data-on="1"]{opacity:1;transform:none;border-color:var(--c);box-shadow:0 0 0 1px rgba(var(--cr),.25),0 10px 50px -10px rgba(var(--cr),.45)}
+.sp .ill{height:160px}.sp-desc,.sp-cta{display:none!important}.sp-ideal{margin-top:auto!important;font-size:13.5px!important}
+.sdots{display:flex;justify-content:center;gap:8px;margin-top:1.25rem}
+.sdot{width:8px;height:8px;padding:0;border:0;border-radius:99px;background:rgba(194,242,228,.2);cursor:pointer;transition:all .4s cubic-bezier(.22,1,.36,1)}.sdot[data-on="1"]{width:24px;background:var(--c)}
+@media(min-width:1024px){
+.sol-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:2rem;align-items:start}
+.stabs{display:flex;flex-direction:column;gap:12px}
+.spanel{position:sticky;top:120px;display:grid;overflow:visible;margin:0;padding:1.75rem;border-radius:24px;background:rgba(14,38,32,.45);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border:1px solid rgba(194,242,228,.08);box-shadow:inset 0 1px 0 rgba(243,247,244,.06)}
+.sp{grid-area:1/1;padding:0;background:none;border:0;border-radius:0;box-shadow:none!important;opacity:0;transform:translateY(12px);visibility:hidden;transition:opacity .45s cubic-bezier(.22,1,.36,1),transform .45s cubic-bezier(.22,1,.36,1),visibility 0s linear .45s}
+.sp[data-on="1"]{opacity:1;transform:none;visibility:visible;transition-delay:0s}
+.sp .ill{height:220px;transform:scale(.96);transition:transform .45s cubic-bezier(.22,1,.36,1)}.sp[data-on="1"] .ill{transform:none}
+.sp-desc{display:block!important}.sp-cta{display:inline-flex!important}.sp-mhead{display:none!important}.sp-ideal{margin-top:0!important;font-size:14.5px!important}
+.sdots{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sp,.sp .ill{transition:opacity .15s!important;transform:none!important}.t-shine{display:none!important}.pc:hover .ic-slide{transform:none}[data-a]{animation:none!important;opacity:1!important;transform:none!important}[data-deco],.mqt,.gc .glow,.gc .glow::after,.gc .glow-content,.gc .glow-content::before{animation:none!important}}
+
+.hv-ghost:hover{border-color:#35C8B4!important;background:rgba(53,200,180,.08)!important;color:#F3F7F4!important}
+.hv-lime:hover{box-shadow:0 0 40px rgba(227,255,0,.35)!important;color:#07130F!important}
+#mnav[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div style="position:relative;background:#07130F;color:#F3F7F4;overflow-x:clip;font-family:Inter,system-ui,sans-serif">
+<div aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(to right,rgba(53,200,180,.06) 1px,transparent 1px),linear-gradient(to bottom,rgba(53,200,180,.06) 1px,transparent 1px);background-size:6rem 5rem;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,#000 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,#000 30%,transparent 100%)"></div>
+<div aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.035;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
+<div id="cur" aria-hidden="true" style="display:none;position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;background:#35C8B4;pointer-events:none;z-index:300;transition:width .25s,height .25s,margin .25s;will-change:transform"></div>
+
+<header id="hdr" style="position:sticky;top:0;z-index:90;height:72px;display:flex;align-items:center;background:rgba(7,19,15,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(194,242,228,.06);transition:height .35s cubic-bezier(.22,1,.36,1)">
+<div style="max-width:1200px;width:100%;margin:0 auto;padding:0 1.5rem;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:2rem">
+<a href="#hero" aria-label="Rehobot, inicio" style="display:flex;align-items:center"><div role="img" aria-label="Rehobot" style="height:28px;width:128px;background:#F3F7F4;mask-image:url(assets/logo.png);-webkit-mask-image:url(assets/logo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-position:left center;-webkit-mask-position:left center"></div></a>
+<nav class="nav-d" aria-label="Principal" style="align-items:center;gap:2.25rem;font-size:15px;font-weight:500">
+<a class="nl" href="#soluciones">Soluciones</a><a class="nl" href="#como-trabajo">Cómo trabajo</a><a class="nl" href="#quien-soy">Quién soy</a><a class="nl" href="#preguntas">Preguntas</a>
+</nav>
+<div style="display:flex;align-items:center;gap:.75rem">
+<a class="hv-ghost nav-d" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener" style="align-items:center;padding:.55rem 1.1rem;border-radius:999px;border:1px solid rgba(53,200,180,.35);color:#F3F7F4;font-size:14px;font-weight:500;transition:border-color .3s,background .3s">Escríbeme</a>
+<button class="nav-m" type="button" aria-label="Abrir menú" id="menu-btn" aria-expanded="false" aria-controls="mnav" style="width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(53,200,180,.35);border-radius:999px;color:#F3F7F4;cursor:pointer">
+<svg class="ic-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+<svg class="ic-close" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+</button>
+</div>
+</div>
+</header>
+
+<div id="mnav" hidden style="position:fixed;inset:0;z-index:85;background:rgba(7,19,15,.82);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);padding:110px 1.5rem 2rem;display:flex;flex-direction:column;gap:1.5rem">
+<a href="#soluciones" data-close style="font-family:'Inter Tight';font-weight:800;font-size:2.4rem;letter-spacing:-.04em;color:#F3F7F4">Soluciones</a>
+<a href="#como-trabajo" data-close style="font-family:'Inter Tight';font-weight:800;font-size:2.4rem;letter-spacing:-.04em;color:#F3F7F4">Cómo trabajo</a>
+<a href="#quien-soy" data-close style="font-family:'Inter Tight';font-weight:800;font-size:2.4rem;letter-spacing:-.04em;color:#F3F7F4">Quién soy</a>
+<a href="#preguntas" data-close style="font-family:'Inter Tight';font-weight:800;font-size:2.4rem;letter-spacing:-.04em;color:#F3F7F4">Preguntas</a>
+<a href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener" data-close style="margin-top:auto;display:flex;align-items:center;justify-content:center;gap:.6rem;background:#E3FF00;color:#07130F;font-family:'Inter Tight';font-weight:700;font-size:1.125rem;padding:1.1rem 1.75rem;border-radius:999px">Agenda un diagnóstico gratis<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></a>
+</div>
+
+<main style="position:relative;z-index:1">
+
+<section id="hero" aria-labelledby="hero-t" style="position:relative;width:100%;margin:-72px auto 0;padding:10rem 1.5rem 0;box-sizing:border-box;text-align:center;min-height:calc(100vh - 40px);overflow:hidden;border-radius:0 0 .75rem .75rem;background:linear-gradient(to bottom,#07130F 0%,rgba(7,19,15,0) 30%,rgba(18,102,80,.55) 78%,rgba(53,200,180,.35) 99%);isolation:isolate">
+<div id="hero-grid" aria-hidden="true" style="position:absolute;z-index:-10;inset:0;opacity:.8;height:600px;width:100%;background-image:linear-gradient(to right,rgba(53,200,180,.10) 1px,transparent 1px),linear-gradient(to bottom,rgba(53,200,180,.10) 1px,transparent 1px);background-size:6rem 5rem;mask-image:radial-gradient(ellipse 80% 50% at 50% 0%,#000 70%,transparent 110%);-webkit-mask-image:radial-gradient(ellipse 80% 50% at 50% 0%,#000 70%,transparent 110%);transition:opacity 1.2s,filter 1.2s"></div>
+<canvas id="aurora" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:-6;mix-blend-mode:screen;opacity:.55;pointer-events:none"></canvas>
+<div id="aurora-fb" aria-hidden="true" style="display:none;position:absolute;inset:0;z-index:-6;pointer-events:none;opacity:.55;mix-blend-mode:screen">
+<div data-deco="" style="position:absolute;left:5%;top:2%;width:42vw;height:42vw;border-radius:50%;background:radial-gradient(circle,#126650,transparent 65%);filter:blur(80px);animation:blobA 22s ease-in-out infinite alternate"></div>
+<div data-deco="" style="position:absolute;right:4%;top:8%;width:36vw;height:36vw;border-radius:50%;background:radial-gradient(circle,#35C8B4,transparent 65%);filter:blur(80px);animation:blobB 26s ease-in-out infinite alternate"></div>
+<div data-deco="" style="position:absolute;left:35%;top:20%;width:28vw;height:28vw;border-radius:50%;background:radial-gradient(circle,#21F4BD,transparent 65%);filter:blur(80px);opacity:.6;animation:blobC 20s ease-in-out infinite alternate"></div>
+</div>
+<svg id="circ-hero" aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:-4;pointer-events:none;overflow:visible"></svg>
+<div class="hz" data-a="" aria-hidden="true" style="position:absolute;z-index:-3;translate:-50% 0;border-radius:100%;background:radial-gradient(closest-side,#07130F 82%,#21F4BD);box-shadow:0 -20px 120px rgba(53,200,180,.25);opacity:0;animation:fade-up 1s cubic-bezier(.22,1,.36,1) .6s forwards"></div>
+
+<div style="position:relative;z-index:2;max-width:1200px;margin:0 auto">
+<a href="#soluciones" class="mv" data-a="" style="display:flex;align-items:center;width:fit-content;margin:0 auto;padding:.5rem 1.25rem;font-size:.875rem;color:#8FA9A0;letter-spacing:-.01em;text-transform:uppercase;background:linear-gradient(to top right,rgba(212,212,216,.05),rgba(156,163,175,.05),transparent);border:2px solid rgba(255,255,255,.05);border-radius:1.5rem;opacity:0;animation:fade-in 1s cubic-bezier(.22,1,.36,1) 0s forwards">SOLUCIONES CON IA PARA NEGOCIOS<svg class="mv-ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:.5rem"><path d="m9 18 6-6-6-6"></path></svg></a>
+<h1 id="hero-t" data-a="" style="text-wrap:balance;padding:1.5rem 0;margin:0 auto;max-width:1000px;font-family:'Inter Tight',sans-serif;font-size:clamp(3rem,7vw,6rem);line-height:1;letter-spacing:-.05em;font-weight:700;background:linear-gradient(to bottom right,#F3F7F4 30%,rgba(243,247,244,.4));-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;transform:translateY(-1rem);animation:fade-in 1s cubic-bezier(.22,1,.36,1) .15s forwards">Tu negocio, atendiendo y vendiendo las <span data-deco="" style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.05em;letter-spacing:-.02em;padding-right:.08em;background:linear-gradient(110deg,#8FA9A0 0%,#F3F7F4 40%,#C2F2E4 50%,#F3F7F4 60%,#8FA9A0 100%);background-size:250% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s infinite">24 horas</span>.</h1>
+<p data-a="" style="text-wrap:balance;max-width:680px;margin:0 auto 3rem;font-size:clamp(1.125rem,1.6vw,1.25rem);line-height:1.6;letter-spacing:-.01em;color:#8FA9A0;opacity:0;transform:translateY(-1rem);animation:fade-in 1s cubic-bezier(.22,1,.36,1) .3s forwards">Creo soluciones con inteligencia artificial para que respondas más rápido, no pierdas clientes y dediques tu tiempo a lo que realmente importa.</p>
+<div data-a="" style="display:flex;flex-direction:column;align-items:center;gap:1.25rem;opacity:0;animation:fade-in 1s cubic-bezier(.22,1,.36,1) .45s forwards">
+<a id="cta-hero" class="hv-lime mv btn-w" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener" style="position:relative;z-index:20;margin-top:-20px;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-width:13rem;background:#E3FF00;color:#07130F;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.125rem;letter-spacing:-.03em;padding:1rem 1.75rem;border-radius:999px;transition:box-shadow .3s">Agenda un diagnóstico gratis<svg class="mv-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></a>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5rem .75rem;font-size:14px;color:#8FA9A0">
+<span style="display:flex;align-items:center;gap:.35rem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Diagnóstico gratis</span>
+<span style="color:#35C8B4">·</span>
+<span style="display:flex;align-items:center;gap:.35rem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Sin tecnicismos</span>
+<span style="color:#35C8B4">·</span>
+<span style="display:flex;align-items:center;gap:.35rem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Argentina y España</span>
+</div>
+</div>
+
+<div id="pzone" data-a="" style="position:relative;margin:8rem auto 0;max-width:1100px;perspective:2000px;opacity:0;animation:fade-up 1s cubic-bezier(.22,1,.36,1) .8s forwards;text-align:left">
+<p style="margin:0 0 1rem;text-align:center;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:#35C8B4">EJEMPLO — así se ve tu negocio con Rehobot</p>
+<div id="panel" style="position:relative;transform:rotateX(18deg);transform-origin:center top;border-radius:24px;border:1px solid rgba(194,242,228,.1);background:rgba(14,38,32,.55);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);box-shadow:0 40px 120px rgba(0,0,0,.6),0 30px 90px -30px rgba(53,200,180,.45),inset 0 1px 0 rgba(243,247,244,.06);overflow:hidden">
+<div style="display:flex;align-items:center;gap:1rem;padding:.9rem 1.25rem;border-bottom:1px solid rgba(194,242,228,.08)">
+<div style="display:flex;gap:7px"><span style="width:11px;height:11px;border-radius:50%;background:#8FA9A0;opacity:.55"></span><span style="width:11px;height:11px;border-radius:50%;background:#8FA9A0;opacity:.4"></span><span style="width:11px;height:11px;border-radius:50%;background:#8FA9A0;opacity:.25"></span></div>
+<span style="flex:1;text-align:center;font-size:13px;font-weight:500;color:#C2F2E4">Panel Rehobot</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;padding:.25rem .6rem;border-radius:999px;border:1px solid rgba(53,200,180,.35);color:#35C8B4">EJEMPLO</span>
+</div>
+<div style="padding:1.25rem;display:grid;gap:12px">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px">
+<div style="padding:1rem 1.1rem;border-radius:16px;background:rgba(7,19,15,.55);border:1px solid rgba(194,242,228,.06)"><div style="font-size:13px;color:#8FA9A0;margin-bottom:.5rem">Mensajes respondidos hoy</div><div id="k-msg" style="display:inline-block;transform-origin:left center;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:2rem;color:#F3F7F4;font-variant-numeric:tabular-nums;line-height:1.1">146</div></div>
+<div style="padding:1rem 1.1rem;border-radius:16px;background:rgba(7,19,15,.55);border:1px solid rgba(194,242,228,.06)"><div style="font-size:13px;color:#8FA9A0;margin-bottom:.5rem">Tiempo de respuesta</div><div id="k-rt" style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:2rem;color:#F3F7F4;font-variant-numeric:tabular-nums;line-height:1.1">8 s</div></div>
+<div style="padding:1rem 1.1rem;border-radius:16px;background:rgba(7,19,15,.55);border:1px solid rgba(194,242,228,.06)"><div style="font-size:13px;color:#8FA9A0;margin-bottom:.5rem">Turnos agendados</div><div id="k-turn" style="display:inline-block;transform-origin:left center;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:2rem;color:#F3F7F4;font-variant-numeric:tabular-nums;line-height:1.1">23</div></div>
+<div style="padding:1rem 1.1rem;border-radius:16px;background:rgba(7,19,15,.55);border:1px solid rgba(194,242,228,.06)"><div style="font-size:13px;color:#8FA9A0;margin-bottom:.5rem">Consultas fuera de horario atendidas</div><div id="k-fh" style="display:inline-block;transform-origin:left center;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:2rem;color:#F3F7F4;font-variant-numeric:tabular-nums;line-height:1.1">41</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:12px">
+<div style="padding:1rem 1.1rem;border-radius:16px;background:rgba(7,19,15,.55);border:1px solid rgba(194,242,228,.06)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem"><span style="font-size:13px;color:#8FA9A0">Conversaciones en vivo</span><span style="display:flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:#21F4BD"><span style="width:6px;height:6px;border-radius:50%;background:#21F4BD;box-shadow:0 0 8px #21F4BD"></span>EN VIVO</span></div>
+<svg id="ch-svg" viewBox="0 0 600 160" style="display:block;width:100%;height:160px;overflow:hidden">
+<defs><linearGradient id="chg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#35C8B4" stop-opacity=".45"></stop><stop offset="1" stop-color="#35C8B4" stop-opacity="0"></stop></linearGradient></defs>
+<path id="ch-area" d="" fill="url(#chg)"></path>
+<path id="ch-line" d="" fill="none" stroke="#21F4BD" stroke-width="2" vector-effect="non-scaling-stroke" style="filter:drop-shadow(0 0 8px #21F4BD)"></path>
+</svg>
+</div>
+<div style="position:relative;padding:1rem 1.1rem;border-radius:16px;background:rgba(7,19,15,.55);border:1px solid rgba(194,242,228,.06);display:flex;flex-direction:column;gap:.85rem">
+<span style="font-size:13px;color:#8FA9A0">Canales</span>
+<div style="display:grid;grid-template-columns:72px 1fr 40px;align-items:center;gap:.75rem;font-size:13px;color:#C2F2E4"><span>WhatsApp</span><div style="height:8px;border-radius:99px;background:rgba(194,242,228,.06)"><div id="b0" style="height:100%;width:62%;border-radius:99px;background:#35C8B4;transition:width .6s cubic-bezier(.22,1,.36,1),background .6s,box-shadow .6s"></div></div><span id="bv0" style="font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;text-align:right">62%</span></div>
+<div style="display:grid;grid-template-columns:72px 1fr 40px;align-items:center;gap:.75rem;font-size:13px;color:#C2F2E4"><span>Instagram</span><div style="height:8px;border-radius:99px;background:rgba(194,242,228,.06)"><div id="b1" style="height:100%;width:48%;border-radius:99px;background:#35C8B4;transition:width .6s cubic-bezier(.22,1,.36,1),background .6s,box-shadow .6s"></div></div><span id="bv1" style="font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;text-align:right">48%</span></div>
+<div style="display:grid;grid-template-columns:72px 1fr 40px;align-items:center;gap:.75rem;font-size:13px;color:#C2F2E4"><span>Web</span><div style="height:8px;border-radius:99px;background:rgba(194,242,228,.06)"><div id="b2" style="height:100%;width:31%;border-radius:99px;background:#126650;transition:width .6s cubic-bezier(.22,1,.36,1),background .6s,box-shadow .6s"></div></div><span id="bv2" style="font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;text-align:right">31%</span></div>
+<div style="display:grid;grid-template-columns:72px 1fr 40px;align-items:center;gap:.75rem;font-size:13px;color:#C2F2E4"><span>Agenda</span><div style="height:8px;border-radius:99px;background:rgba(194,242,228,.06)"><div id="b3" style="height:100%;width:79%;border-radius:99px;background:#E3FF00;transition:width .6s cubic-bezier(.22,1,.36,1),background .6s,box-shadow .6s"></div></div><span id="bv3" style="font-family:'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;text-align:right">79%</span></div>
+<canvas id="sparks" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"></canvas>
+</div>
+</div>
+</div>
+</div>
+<div aria-hidden="true" style="position:absolute;inset:0;z-index:50;pointer-events:none;background:linear-gradient(to top,#07130F 4%,transparent 38%)"></div>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="prob-t" style="position:relative;padding:clamp(5rem,10vw,8rem) 1.5rem">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
+<div data-deco="" style="position:absolute;left:12%;top:45%;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,91,.08),rgba(143,169,160,.1) 45%,transparent 70%);filter:blur(40px);opacity:0;animation:smokeB 9s ease-in-out 0s infinite"></div><div data-deco="" style="position:absolute;left:42%;top:55%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,91,.08),rgba(143,169,160,.1) 45%,transparent 70%);filter:blur(40px);opacity:0;animation:smokeB 11s ease-in-out 3s infinite"></div><div data-deco="" style="position:absolute;left:70%;top:42%;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,91,.08),rgba(143,169,160,.1) 45%,transparent 70%);filter:blur(40px);opacity:0;animation:smokeB 8s ease-in-out 1.5s infinite"></div><div data-deco="" style="position:absolute;left:28%;top:62%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,91,.08),rgba(143,169,160,.1) 45%,transparent 70%);filter:blur(40px);opacity:0;animation:smokeB 12s ease-in-out 6s infinite"></div>
+</div>
+<div style="position:relative;max-width:1200px;margin:0 auto">
+<div data-reveal="0" style="margin-bottom:3.5rem;display:flex;flex-direction:column;align-items:flex-start;gap:1.25rem">
+<span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:#FF6B5B;padding:.45rem .9rem;border:1px solid rgba(255,107,91,.28);border-radius:999px">LO QUE HOY TE CUESTA CLIENTES</span>
+<h2 id="prob-t" style="margin:0;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(2.25rem,4.5vw,3.75rem);letter-spacing:-.045em;line-height:1.02;color:#F3F7F4;text-wrap:balance">¿Te pasa alguna de <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.05em;letter-spacing:-.01em;color:#FF6B5B">estas</em>?</h2>
+<p style="margin:0;max-width:620px;font-size:1.125rem;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Son problemas comunes y tienen solución. Pero cada día que siguen, se llevan clientes.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1.5rem;align-items:stretch">
+<div data-reveal="0" style="display:flex">
+<article class="pc" style="position:relative;flex:1;overflow:hidden;padding:2.5rem;border-radius:24px;background:rgba(14,38,32,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,107,91,.14);display:flex;flex-direction:column;gap:1.25rem">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 55% at 50% 0%,rgba(255,107,91,.08),transparent 75%)"></div>
+<div class="pc-neon" aria-hidden="true" data-deco="" style="position:absolute;top:0;left:12%;right:12%;height:2px;border-radius:2px;background:#FF6B5B;box-shadow:0 0 18px rgba(255,107,91,.55);animation-delay:0s"></div>
+<div style="position:relative;width:88px;height:88px;border-radius:20px;background:rgba(255,107,91,.10);border:1px solid rgba(255,107,91,.28);display:grid;place-items:center;margin-bottom:.5rem"><svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#FF6B5B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g class="ic-shake" data-deco=""><path d="M16 18h36a7 7 0 0 1 7 7v19a7 7 0 0 1-7 7H32l-11 8v-8h-5a7 7 0 0 1-7-7V25a7 7 0 0 1 7-7z"></path><path d="M37 27a8 8 0 1 0 7.5 11 6.5 6.5 0 0 1-7.5-11z"></path></g><circle class="ic-dot" data-deco="" cx="57" cy="17" r="6" fill="#FF6B5B" stroke="#0E2620" stroke-width="2.5"></circle></svg></div>
+<h3 style="position:relative;margin:0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.375rem;letter-spacing:-.03em;line-height:1.2;color:#F3F7F4">Mensajes sin respuesta</h3>
+<p style="position:relative;margin:0;font-size:16.5px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Te escriben de noche y respondes al día siguiente, cuando el cliente ya compró en otro lado.</p>
+</article></div>
+<div data-reveal="120" style="display:flex">
+<article class="pc" style="position:relative;flex:1;overflow:hidden;padding:2.5rem;border-radius:24px;background:rgba(14,38,32,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,107,91,.14);display:flex;flex-direction:column;gap:1.25rem">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 55% at 50% 0%,rgba(255,107,91,.08),transparent 75%)"></div>
+<div class="pc-neon" aria-hidden="true" data-deco="" style="position:absolute;top:0;left:12%;right:12%;height:2px;border-radius:2px;background:#FF6B5B;box-shadow:0 0 18px rgba(255,107,91,.55);animation-delay:-2.7s"></div>
+<div style="position:relative;width:88px;height:88px;border-radius:20px;background:rgba(255,107,91,.10);border:1px solid rgba(255,107,91,.28);display:grid;place-items:center;margin-bottom:.5rem"><svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#FF6B5B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 31a22 22 0 0 1 37-14"></path><path d="M53 9v8h-8"></path><path d="M57 41a22 22 0 0 1-37 14"></path><path d="M19 63v-8h8"></path><g class="ic-flip" data-deco=""><path d="M28 21h16M28 51h16"></path><path d="M30 21c0 8 6 10 6 15s-6 7-6 15M42 21c0 8-6 10-6 15s6 7 6 15"></path><path d="M32 26h8l-4 5z" fill="#FF6B5B" stroke="none"></path><path class="ic-sand" data-deco="" d="M36 36v11"></path><path d="M32 51q4-5 8 0" fill="rgba(255,107,91,.35)"></path></g></svg></div>
+<h3 style="position:relative;margin:0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.375rem;letter-spacing:-.03em;line-height:1.2;color:#F3F7F4">Horas en tareas repetidas</h3>
+<p style="position:relative;margin:0;font-size:16.5px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Confirmar turnos, pasar datos, mandar recordatorios… todos los días lo mismo, a mano.</p>
+</article></div>
+<div data-reveal="240" style="display:flex">
+<article class="pc" style="position:relative;flex:1;overflow:hidden;padding:2.5rem;border-radius:24px;background:rgba(14,38,32,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,107,91,.14);display:flex;flex-direction:column;gap:1.25rem">
+<div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 55% at 50% 0%,rgba(255,107,91,.08),transparent 75%)"></div>
+<div class="pc-neon" aria-hidden="true" data-deco="" style="position:absolute;top:0;left:12%;right:12%;height:2px;border-radius:2px;background:#FF6B5B;box-shadow:0 0 18px rgba(255,107,91,.55);animation-delay:-5.4s"></div>
+<div style="position:relative;width:88px;height:88px;border-radius:20px;background:rgba(255,107,91,.10);border:1px solid rgba(255,107,91,.28);display:grid;place-items:center;margin-bottom:.5rem"><svg width="72" height="72" viewBox="0 0 72 72" fill="none" stroke="#FF6B5B" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g class="ic-slide"><circle class="ic-fade" data-deco="" cx="27" cy="24" r="9" stroke-dasharray="3 3.5"></circle><path class="ic-fade ic-fade2" data-deco="" d="M10 58c0-10 7.6-17 17-17s17 7 17 17" stroke-dasharray="3 3.5"></path></g><path d="M48 38h15M57 32l6 6-6 6"></path></svg></div>
+<h3 style="position:relative;margin:0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.375rem;letter-spacing:-.03em;line-height:1.2;color:#F3F7F4">Clientes que se enfrían</h3>
+<p style="position:relative;margin:0;font-size:16.5px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Personas que preguntaron, mostraron interés… y a las que nadie volvió a escribir.</p>
+</article></div>
+</div>
+<div data-reveal="300" style="margin-top:4rem;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.75rem;text-align:center">
+<p style="margin:0;font-weight:500;font-size:clamp(1.05rem,1.6vw,1.25rem);color:#F3F7F4">La buena noticia: todo esto se puede automatizar.</p>
+<svg class="ic-bob" data-deco="" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7h9v9M17 7 7 17"></path></svg>
+</div>
+</div>
+</section>
+
+<section id="manif" aria-label="Manifiesto" style="position:relative;min-height:70vh;display:grid;place-items:center;padding:5rem 1.5rem;box-sizing:border-box;text-align:center">
+<canvas id="manif-c" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"></canvas>
+<h2 id="manif-t" style="position:relative;max-width:1100px;margin:0;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,5.5rem);letter-spacing:-.045em;line-height:1.02;color:#F3F7F4;text-wrap:balance">Tu negocio merece <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.05em;letter-spacing:-.01em;color:#35C8B4">espacio</em> para crecer.</h2>
+</section>
+
+<section id="soluciones" aria-labelledby="sol-t" style="position:relative;padding:clamp(5rem,10vw,8rem) 1.5rem">
+<div style="max-width:1200px;margin:0 auto">
+<h2 id="sol-t" data-reveal="0" style="margin:0;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(2.25rem,4.5vw,3.75rem);letter-spacing:-.045em;line-height:1.02;color:#F3F7F4;text-wrap:balance;margin-bottom:3.5rem">Soluciones que <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.05em;letter-spacing:-.01em">trabajan</em> por ti</h2>
+<div data-reveal="100" class="sol-grid" id="sol-grid">
+<div class="stabs" role="tablist" aria-orientation="vertical" aria-label="Soluciones" id="stabs" data-run="0" data-auto="1">
+<button id="stab0" class="stab c-aqua" type="button" role="tab" aria-selected="true" aria-controls="spn0" tabindex="0" data-on="1" data-i="0">
+<span class="t-bar" aria-hidden="true"></span><span class="t-shine" aria-hidden="true"></span>
+<span class="t-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></span>
+<span style="display:flex;flex-direction:column;gap:.2rem;min-width:0"><span class="t-name">Agente de atención por WhatsApp e Instagram</span><span class="t-sub">Que ningún cliente se quede sin respuesta.</span></span>
+<span class="t-arr" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+<span class="t-prog" aria-hidden="true"><span class="t-progf"></span></span>
+</button>
+<button id="stab1" class="stab c-menta" type="button" role="tab" aria-selected="false" aria-controls="spn1" tabindex="-1" data-on="0" data-i="1">
+<span class="t-bar" aria-hidden="true"></span><span class="t-shine" aria-hidden="true"></span>
+<span class="t-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></span>
+<span style="display:flex;flex-direction:column;gap:.2rem;min-width:0"><span class="t-name">Páginas web</span><span class="t-sub">Un sitio profesional que trabaja por ti.</span></span>
+<span class="t-arr" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+<span class="t-prog" aria-hidden="true"><span class="t-progf"></span></span>
+</button>
+<button id="stab2" class="stab c-lima" type="button" role="tab" aria-selected="false" aria-controls="spn2" tabindex="-1" data-on="0" data-i="2">
+<span class="t-bar" aria-hidden="true"></span><span class="t-shine" aria-hidden="true"></span>
+<span class="t-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg></span>
+<span style="display:flex;flex-direction:column;gap:.2rem;min-width:0"><span class="t-name">Automatizaciones</span><span class="t-sub">Menos tareas repetitivas, más tiempo libre.</span></span>
+<span class="t-arr" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+<span class="t-prog" aria-hidden="true"><span class="t-progf"></span></span>
+</button>
+<button id="stab3" class="stab c-bruma" type="button" role="tab" aria-selected="false" aria-controls="spn3" tabindex="-1" data-on="0" data-i="3">
+<span class="t-bar" aria-hidden="true"></span><span class="t-shine" aria-hidden="true"></span>
+<span class="t-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4M22 5h-4"></path></svg></span>
+<span style="display:flex;flex-direction:column;gap:.2rem;min-width:0"><span class="t-name">Contenido para redes con IA</span><span class="t-sub">Presencia constante, sin que te quite el día.</span></span>
+<span class="t-arr" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+<span class="t-prog" aria-hidden="true"><span class="t-progf"></span></span>
+</button>
+</div>
+<div>
+<div id="sol-panels" class="spanel">
+<div id="spn0" class="sp c-aqua" role="tabpanel" aria-labelledby="stab0" data-on="1">
+<div class="ill" aria-hidden="true" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(7,19,15,.6);border:1px solid rgba(194,242,228,.06);display:grid;place-items:center"><div style="width:min(320px,90%);display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:1.35">
+<div style="display:flex;align-items:center;gap:8px;padding-bottom:8px;border-bottom:1px solid rgba(194,242,228,.06)"><span style="width:22px;height:22px;border-radius:50%;background:rgba(33,244,189,.2);border:1px solid rgba(33,244,189,.5)"></span><span style="font-weight:500;color:#F3F7F4">Tu negocio</span><span style="margin-left:auto;font-size:11px;color:#21F4BD">en línea</span></div>
+<div data-deco="" style="align-self:flex-start;max-width:80%;padding:7px 11px;border-radius:12px 12px 12px 3px;background:rgba(194,242,228,.08);color:#F3F7F4;animation:c1 6s ease infinite">¿Tienen turno mañana?</div>
+<div style="position:relative;align-self:flex-end;max-width:86%">
+<div data-deco="" style="position:absolute;right:0;top:0;display:flex;gap:4px;padding:10px 12px;border-radius:12px 12px 3px 12px;background:rgba(33,244,189,.1);opacity:0;animation:c2 6s ease infinite"><span data-deco="" style="width:5px;height:5px;border-radius:50%;background:#21F4BD;animation:tdot .9s ease-in-out 0s infinite"></span><span data-deco="" style="width:5px;height:5px;border-radius:50%;background:#21F4BD;animation:tdot .9s ease-in-out 0.15s infinite"></span><span data-deco="" style="width:5px;height:5px;border-radius:50%;background:#21F4BD;animation:tdot .9s ease-in-out 0.3s infinite"></span></div>
+<div data-deco="" style="padding:7px 11px;border-radius:12px 12px 3px 12px;background:rgba(33,244,189,.14);border:1px solid rgba(33,244,189,.3);color:#F3F7F4;animation:c3 6s ease infinite">¡Sí! Tengo 10:00 y 17:30. ¿Cuál prefieres? <span style="margin-left:4px;font-size:11px;color:#21F4BD;letter-spacing:-.15em">✓✓</span></div>
+</div>
+</div></div>
+<div class="sp-mhead" style="display:flex;flex-direction:column;gap:.3rem"><h3 style="margin:0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.03em;line-height:1.2;color:#F3F7F4">Agente de atención por WhatsApp e Instagram</h3><p style="margin:0;font-size:.95rem;color:var(--c)">Que ningún cliente se quede sin respuesta.</p></div>
+<p class="sp-desc" style="margin:0;font-size:16.5px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Un asistente con IA que responde los mensajes de tu negocio al instante, a cualquier hora, como lo haría alguien de tu equipo.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px"><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Precios, horarios y preguntas frecuentes</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Agenda turnos en tu calendario</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Recordatorios automáticos</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Te pasa la conversación cuando hace falta</span></div>
+<p class="sp-ideal" style="margin:0;padding:.8rem 1rem;border:1px solid rgba(var(--cr),.45);border-radius:14px;font-size:14.5px;line-height:1.5;color:#C2F2E4"><strong style="color:var(--c);font-weight:500">Ideal si:</strong> recibes muchas consultas repetidas o pierdes clientes por no contestar a tiempo.</p>
+<a class="hv-ghost sp-cta mv" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20me%20interesa%20Agente%20de%20atenci%C3%B3n%20por%20WhatsApp%20e%20Instagram" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.5rem;border-radius:999px;border:1px solid rgba(53,200,180,.35);color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-.02em;transition:border-color .3s,background .3s">Quiero esta solución<span class="mv-ic" style="display:flex;color:var(--c)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span></a>
+</div>
+<div id="spn1" class="sp c-menta" role="tabpanel" aria-labelledby="stab1" data-on="0">
+<div class="ill" aria-hidden="true" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(7,19,15,.6);border:1px solid rgba(194,242,228,.06);display:grid;place-items:center"><div style="width:min(340px,88%);height:80%;border-radius:10px;border:1px solid rgba(194,242,228,.12);background:rgba(14,38,32,.6);overflow:hidden;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:4px;padding:7px 9px;border-bottom:1px solid rgba(194,242,228,.08)"><span style="width:6px;height:6px;border-radius:50%;background:rgba(143,169,160,.45)"></span><span style="width:6px;height:6px;border-radius:50%;background:rgba(143,169,160,.35)"></span><span style="width:6px;height:6px;border-radius:50%;background:rgba(143,169,160,.25)"></span><span style="margin-left:8px;flex:1;height:6px;border-radius:9px;background:rgba(194,242,228,.06)"></span></div>
+<div style="flex:1;padding:10px;display:flex;flex-direction:column;gap:8px">
+<div data-deco="" style="display:flex;justify-content:space-between;align-items:center;animation:wb 6s ease infinite backwards"><span style="width:34px;height:6px;border-radius:9px;background:#35C8B4"></span><span style="display:flex;gap:5px"><span style="width:16px;height:4px;border-radius:9px;background:rgba(194,242,228,.2)"></span><span style="width:16px;height:4px;border-radius:9px;background:rgba(194,242,228,.2)"></span><span style="width:16px;height:4px;border-radius:9px;background:rgba(194,242,228,.2)"></span></span></div>
+<div data-deco="" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px;animation:wb 6s ease .35s infinite backwards"><span style="width:70%;height:9px;border-radius:9px;background:rgba(243,247,244,.75)"></span><span style="width:48%;height:5px;border-radius:9px;background:rgba(194,242,228,.25)"></span><span data-deco="" style="margin-top:4px;width:54px;height:14px;border-radius:99px;background:#35C8B4;animation:wbtn 6s ease infinite"></span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><span data-deco="" style="height:28px;border-radius:6px;background:rgba(194,242,228,.07);border:1px solid rgba(194,242,228,.08);animation:wb 6s ease .7s infinite backwards"></span><span data-deco="" style="height:28px;border-radius:6px;background:rgba(194,242,228,.07);border:1px solid rgba(194,242,228,.08);animation:wb 6s ease .9s infinite backwards"></span><span data-deco="" style="height:28px;border-radius:6px;background:rgba(194,242,228,.07);border:1px solid rgba(194,242,228,.08);animation:wb 6s ease 1.1s infinite backwards"></span></div>
+</div>
+</div></div>
+<div class="sp-mhead" style="display:flex;flex-direction:column;gap:.3rem"><h3 style="margin:0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.03em;line-height:1.2;color:#F3F7F4">Páginas web</h3><p style="margin:0;font-size:.95rem;color:var(--c)">Un sitio profesional que trabaja por ti.</p></div>
+<p class="sp-desc" style="margin:0;font-size:16.5px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Webs claras, rápidas y pensadas para que el visitante se convierta en cliente.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px"><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Diseño a medida</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Adaptada a celulares</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Conectada a WhatsApp y agenda</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Optimizada para Google</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Fácil de actualizar</span></div>
+<p class="sp-ideal" style="margin:0;padding:.8rem 1rem;border:1px solid rgba(var(--cr),.45);border-radius:14px;font-size:14.5px;line-height:1.5;color:#C2F2E4"><strong style="color:var(--c);font-weight:500">Ideal si:</strong> tu negocio solo existe en Instagram o tu web actual no te trae clientes.</p>
+<a class="hv-ghost sp-cta mv" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20me%20interesa%20P%C3%A1ginas%20web" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.5rem;border-radius:999px;border:1px solid rgba(53,200,180,.35);color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-.02em;transition:border-color .3s,background .3s">Quiero esta solución<span class="mv-ic" style="display:flex;color:var(--c)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span></a>
+</div>
+<div id="spn2" class="sp c-lima" role="tabpanel" aria-labelledby="stab2" data-on="0">
+<div class="ill" aria-hidden="true" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(7,19,15,.6);border:1px solid rgba(194,242,228,.06);display:grid;place-items:center"><div style="position:relative;width:min(380px,92%);display:flex;justify-content:space-between;align-items:flex-start">
+<div aria-hidden="true" style="position:absolute;left:32px;right:32px;top:23px;height:2px;background:rgba(194,242,228,.08)">
+<div data-deco="" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(227,255,0,.25),#E3FF00);transform-origin:left;animation:aline 4s linear infinite"></div>
+<div data-deco="" style="position:absolute;inset:0;opacity:0;animation:apulse 4s linear infinite"><span style="position:absolute;left:-5px;top:-4px;width:10px;height:10px;border-radius:50%;background:#E3FF00;box-shadow:0 0 14px #E3FF00,0 0 4px #F3F7F4"></span></div>
+</div>
+<div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;width:64px"><div class="anode" data-deco="" style="animation:an0 4s linear infinite"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg><span class="anode-ck">✓</span></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.04em;color:#8FA9A0">Formulario</span></div>
+<div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;width:64px"><div class="anode" data-deco="" style="animation:an1 4s linear infinite"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span class="anode-ck">✓</span></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.04em;color:#8FA9A0">WhatsApp</span></div>
+<div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;width:64px"><div class="anode" data-deco="" style="animation:an2 4s linear infinite"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg><span class="anode-ck">✓</span></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.04em;color:#8FA9A0">Calendario</span></div>
+<div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;width:64px"><div class="anode" data-deco="" style="animation:an3 4s linear infinite"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M3 15h18M9 3v18"></path></svg><span class="anode-ck">✓</span></div><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.04em;color:#8FA9A0">Planilla</span></div>
+</div></div>
+<div class="sp-mhead" style="display:flex;flex-direction:column;gap:.3rem"><h3 style="margin:0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.03em;line-height:1.2;color:#F3F7F4">Automatizaciones</h3><p style="margin:0;font-size:.95rem;color:var(--c)">Menos tareas repetitivas, más tiempo libre.</p></div>
+<p class="sp-desc" style="margin:0;font-size:16.5px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Conecto tus herramientas para que el trabajo manual se haga solo.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px"><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Seguimiento de interesados</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Confirmaciones y recordatorios</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Planillas y reportes automáticos</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>WhatsApp + calendario + formularios</span></div>
+<p class="sp-ideal" style="margin:0;padding:.8rem 1rem;border:1px solid rgba(var(--cr),.45);border-radius:14px;font-size:14.5px;line-height:1.5;color:#C2F2E4"><strong style="color:var(--c);font-weight:500">Ideal si:</strong> sientes que pasas horas en tareas que siempre son iguales.</p>
+<a class="hv-ghost sp-cta mv" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20me%20interesa%20Automatizaciones" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.5rem;border-radius:999px;border:1px solid rgba(53,200,180,.35);color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-.02em;transition:border-color .3s,background .3s">Quiero esta solución<span class="mv-ic" style="display:flex;color:var(--c)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span></a>
+</div>
+<div id="spn3" class="sp c-bruma" role="tabpanel" aria-labelledby="stab3" data-on="0">
+<div class="ill" aria-hidden="true" style="position:relative;overflow:hidden;border-radius:16px;background:rgba(7,19,15,.6);border:1px solid rgba(194,242,228,.06);display:grid;place-items:center"><div style="position:relative;height:calc(100% - 2.5rem);aspect-ratio:3/2;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:6px">
+<div style="border-radius:8px;background:rgba(194,242,228,.05);border:1px solid rgba(194,242,228,.08);overflow:hidden"><div data-deco="" style="width:100%;height:100%;background:linear-gradient(135deg,#126650,#35C8B4);animation:feed 6s ease 0.00s infinite backwards"></div></div><div style="border-radius:8px;background:rgba(194,242,228,.05);border:1px solid rgba(194,242,228,.08);overflow:hidden"><div data-deco="" style="width:100%;height:100%;background:linear-gradient(135deg,#0E2620,#21F4BD);animation:feed 6s ease 0.35s infinite backwards"></div></div><div style="border-radius:8px;background:rgba(194,242,228,.05);border:1px solid rgba(194,242,228,.08);overflow:hidden"><div data-deco="" style="width:100%;height:100%;background:linear-gradient(135deg,#35C8B4,#E3FF00);animation:feed 6s ease 0.70s infinite backwards"></div></div><div style="border-radius:8px;background:rgba(194,242,228,.05);border:1px solid rgba(194,242,228,.08);overflow:hidden"><div data-deco="" style="width:100%;height:100%;background:linear-gradient(135deg,#126650,#C2F2E4);animation:feed 6s ease 1.05s infinite backwards"></div></div><div style="border-radius:8px;background:rgba(194,242,228,.05);border:1px solid rgba(194,242,228,.08);overflow:hidden"><div data-deco="" style="width:100%;height:100%;background:linear-gradient(135deg,#21F4BD,#126650);animation:feed 6s ease 1.40s infinite backwards"></div></div><div style="border-radius:8px;background:rgba(194,242,228,.05);border:1px solid rgba(194,242,228,.08);overflow:hidden"><div data-deco="" style="width:100%;height:100%;background:linear-gradient(135deg,#0E2620,#35C8B4);animation:feed 6s ease 1.75s infinite backwards"></div></div>
+<div data-deco="" style="position:absolute;right:-10px;bottom:-10px;width:34px;height:34px;border-radius:50%;background:#0E2620;border:1px solid rgba(194,242,228,.35);display:grid;place-items:center;animation:beat 1.2s ease-in-out infinite"><svg width="16" height="16" viewBox="0 0 24 24" fill="#C2F2E4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></div>
+</div></div>
+<div class="sp-mhead" style="display:flex;flex-direction:column;gap:.3rem"><h3 style="margin:0;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.03em;line-height:1.2;color:#F3F7F4">Contenido para redes con IA</h3><p style="margin:0;font-size:.95rem;color:var(--c)">Presencia constante, sin que te quite el día.</p></div>
+<p class="sp-desc" style="margin:0;font-size:16.5px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Diseño gráfico profesional + IA para que tu marca publique con calidad y de forma regular.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px"><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Posts, carruseles e historias</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Planificación mensual</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Textos adaptados a tu marca</span><span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border-radius:999px;border:1px solid rgba(var(--cr),.3);background:rgba(var(--cr),.08);font-size:14px;color:#F3F7F4"><span style="color:var(--c)">↗</span>Producción más rápida</span></div>
+<p class="sp-ideal" style="margin:0;padding:.8rem 1rem;border:1px solid rgba(var(--cr),.45);border-radius:14px;font-size:14.5px;line-height:1.5;color:#C2F2E4"><strong style="color:var(--c);font-weight:500">Ideal si:</strong> sabes que tienes que publicar pero no tienes tiempo ni equipo.</p>
+<a class="hv-ghost sp-cta mv" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20me%20interesa%20Contenido%20para%20redes%20con%20IA" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.5rem;border-radius:999px;border:1px solid rgba(53,200,180,.35);color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-.02em;transition:border-color .3s,background .3s">Quiero esta solución<span class="mv-ic" style="display:flex;color:var(--c)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span></a>
+</div>
+</div>
+<div class="sdots" aria-hidden="true"><button type="button" tabindex="-1" class="sdot c-aqua" data-on="1" data-i="0"></button><button type="button" tabindex="-1" class="sdot c-menta" data-on="0" data-i="1"></button><button type="button" tabindex="-1" class="sdot c-lima" data-on="0" data-i="2"></button><button type="button" tabindex="-1" class="sdot c-bruma" data-on="0" data-i="3"></button></div>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="cmp-t" style="position:relative;padding:clamp(5rem,10vw,8rem) 1.5rem">
+<div style="max-width:1000px;margin:0 auto">
+<h2 id="cmp-t" data-reveal="0" style="margin:0 0 3.5rem;text-align:center;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(2.25rem,4.5vw,3.75rem);letter-spacing:-.045em;line-height:1.02;color:#F3F7F4;text-wrap:balance">La diferencia se <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.05em;letter-spacing:-.01em">nota</em></h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:2rem;align-items:stretch">
+<div data-reveal="0" style="padding:2.5rem;border-radius:24px;background:rgba(14,38,32,.3);border:1px solid rgba(255,107,91,.2)">
+<p style="margin:0 0 1.75rem;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:#8FA9A0">Sin Rehobot</p>
+<ul style="list-style:none;margin:0;padding:0;display:grid;gap:1.1rem;font-size:17px;color:#8FA9A0">
+<li style="display:flex;gap:.85rem;align-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B5B" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>Mensajes sin responder</li>
+<li style="display:flex;gap:.85rem;align-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B5B" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>Tareas manuales que se repiten</li>
+<li style="display:flex;gap:.85rem;align-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B5B" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>Interesados que se enfrían</li>
+<li style="display:flex;gap:.85rem;align-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B5B" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>Redes sin publicar</li>
+</ul>
+</div>
+<div data-reveal="120" style="display:flex">
+<div class="gc st">
+<div class="glow" aria-hidden="true"></div>
+<div class="glow-content" style="padding:2.5rem;height:100%;border:1px solid #35C8B4">
+<p style="margin:0 0 1.75rem;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:#35C8B4">Con Rehobot</p>
+<ul style="list-style:none;margin:0;padding:0;display:grid;gap:1.1rem;font-size:17px;color:#F3F7F4">
+<li style="display:flex;gap:.85rem;align-items:center"><span style="width:18px;color:#E3FF00;font-weight:700">↗</span>Respuesta al instante, 24/7</li>
+<li style="display:flex;gap:.85rem;align-items:center"><span style="width:18px;color:#E3FF00;font-weight:700">↗</span>Procesos que se hacen solos</li>
+<li style="display:flex;gap:.85rem;align-items:center"><span style="width:18px;color:#E3FF00;font-weight:700">↗</span>Seguimiento automático</li>
+<li style="display:flex;gap:.85rem;align-items:center"><span style="width:18px;color:#E3FF00;font-weight:700">↗</span>Presencia constante</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="como-trabajo" aria-labelledby="how-t" style="position:relative;padding:clamp(5rem,10vw,8rem) 1.5rem;overflow:hidden">
+<div id="wm" aria-hidden="true" style="position:absolute;left:50%;top:10%;width:60vw;aspect-ratio:908/895;transform:translateX(-50%);opacity:.03;background:#35C8B4;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;pointer-events:none"></div>
+<div style="position:relative;max-width:1200px;margin:0 auto">
+<h2 id="how-t" data-reveal="0" style="margin:0 0 4rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(2.25rem,4.5vw,3.75rem);letter-spacing:-.045em;line-height:1.02;color:#F3F7F4;text-wrap:balance">Así <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.05em;letter-spacing:-.01em">trabajamos</em> juntos</h2>
+<ol id="steps" class="steps" style="list-style:none;margin:0;padding:0">
+<div class="stp-line" aria-hidden="true"><div class="stp-fill"></div></div>
+<li class="stp" data-reveal="0" style="position:relative">
+<div style="width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#0E2620;border:1px solid #126650;box-shadow:0 0 30px rgba(53,200,180,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path class="stp-arrow" pathLength="1" d="M8 7h9v9M17 7 7 17" style="stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s cubic-bezier(.22,1,.36,1)"></path></svg></div>
+<div><p style="margin:0 0 .35rem;font-family:'JetBrains Mono',monospace;font-size:.8125rem;letter-spacing:.08em;color:#35C8B4">01</p><h3 style="margin:0 0 .6rem;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.375rem;letter-spacing:-.03em;color:#F3F7F4">Diagnóstico gratis.</h3><p style="margin:0;font-size:16px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Conversamos 30 minutos sobre tu negocio y detectamos dónde la IA te puede ahorrar tiempo o traer clientes.</p></div>
+</li>
+<li class="stp" data-reveal="100" style="position:relative">
+<div style="width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#0E2620;border:1px solid #126650;box-shadow:0 0 30px rgba(53,200,180,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path class="stp-arrow" pathLength="1" d="M8 7h9v9M17 7 7 17" style="stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s cubic-bezier(.22,1,.36,1)"></path></svg></div>
+<div><p style="margin:0 0 .35rem;font-family:'JetBrains Mono',monospace;font-size:.8125rem;letter-spacing:.08em;color:#35C8B4">02</p><h3 style="margin:0 0 .6rem;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.375rem;letter-spacing:-.03em;color:#F3F7F4">Propuesta a medida.</h3><p style="margin:0;font-size:16px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Te presento una solución concreta, con plazos y precio claros.</p></div>
+</li>
+<li class="stp" data-reveal="200" style="position:relative">
+<div style="width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#0E2620;border:1px solid #126650;box-shadow:0 0 30px rgba(53,200,180,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path class="stp-arrow" pathLength="1" d="M8 7h9v9M17 7 7 17" style="stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s cubic-bezier(.22,1,.36,1)"></path></svg></div>
+<div><p style="margin:0 0 .35rem;font-family:'JetBrains Mono',monospace;font-size:.8125rem;letter-spacing:.08em;color:#35C8B4">03</p><h3 style="margin:0 0 .6rem;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.375rem;letter-spacing:-.03em;color:#F3F7F4">Implementación.</h3><p style="margin:0;font-size:16px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Lo armo, lo pruebo y te lo dejo funcionando.</p></div>
+</li>
+<li class="stp" data-reveal="300" style="position:relative">
+<div style="width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#0E2620;border:1px solid #126650;box-shadow:0 0 30px rgba(53,200,180,.12)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3FF00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path class="stp-arrow" pathLength="1" d="M8 7h9v9M17 7 7 17" style="stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s cubic-bezier(.22,1,.36,1)"></path></svg></div>
+<div><p style="margin:0 0 .35rem;font-family:'JetBrains Mono',monospace;font-size:.8125rem;letter-spacing:.08em;color:#35C8B4">04</p><h3 style="margin:0 0 .6rem;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.375rem;letter-spacing:-.03em;color:#F3F7F4">Acompañamiento.</h3><p style="margin:0;font-size:16px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Mantengo, ajusto y te muestro resultados cada mes.</p></div>
+</li>
+</ol>
+</div>
+</section>
+
+<section id="quien-soy" aria-labelledby="who-t" style="position:relative;padding:clamp(5rem,10vw,8rem) 1.5rem">
+<div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(2.5rem,6vw,5rem);align-items:center">
+<div data-reveal="0" style="position:relative;max-width:480px;width:100%;justify-self:center">
+<div aria-hidden="true" style="position:absolute;inset:8% -6% -6% 8%;border-radius:40px;background:radial-gradient(circle at 50% 60%,rgba(53,200,180,.35),transparent 70%);filter:blur(50px)"></div>
+<div class="duo" style="position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;border:1px solid rgba(194,242,228,.1);box-shadow:inset 0 1px 0 rgba(243,247,244,.06)">
+<img src="assets/santiago.jpg" alt="Santiago Rodríguez, fundador de Rehobot, en un parque al atardecer" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:grayscale(1) contrast(1.08) brightness(.92)">
+<div class="ov" aria-hidden="true" style="position: absolute; inset: 0; mix-blend-mode: color; opacity: .9; background: url(&quot;assets/santiago.jpg&quot;) center / cover no-repeat"></div>
+</div>
+</div>
+<div data-reveal="120">
+<p style="margin:0 0 1.25rem;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:#8FA9A0">QUIÉN ESTÁ DETRÁS</p>
+<h2 id="who-t" style="margin:0 0 1rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(2.25rem,4.5vw,3.75rem);letter-spacing:-.045em;line-height:1.02;color:#F3F7F4">Santiago <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.05em;letter-spacing:-.01em">Rodríguez</em></h2>
+<p style="margin:0 0 1.75rem;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.875rem;color:#35C8B4">Diseñador gráfico · Soluciones con IA</p>
+<p style="margin:0 0 2.25rem;max-width:520px;font-size:18px;line-height:1.6;color:#8FA9A0;text-wrap:pretty">Vengo del diseño gráfico y del contenido para redes. Hoy uso ese mismo ojo para crear soluciones con inteligencia artificial que se vean bien y, sobre todo, que funcionen. <span style="color:#F3F7F4">Trabajo directamente contigo, sin intermediarios.</span></p>
+<a class="hv-ghost mv btn-w" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.75rem;border-radius:999px;border:1px solid rgba(53,200,180,.35);color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;letter-spacing:-.02em;transition:border-color .3s,background .3s">Hablemos por WhatsApp<svg class="mv-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></a>
+</div>
+</div>
+</section>
+
+<section id="preguntas" aria-labelledby="faq-t" style="position:relative;padding:clamp(5rem,10vw,8rem) 1.5rem">
+<div style="max-width:860px;margin:0 auto">
+<h2 id="faq-t" data-reveal="0" style="margin:0 0 3rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(2.25rem,4.5vw,3.75rem);letter-spacing:-.045em;line-height:1.02;color:#F3F7F4;text-wrap:balance">Tus preguntas, <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.05em;letter-spacing:-.01em">respondidas</em></h2>
+<div data-reveal="80" style="border-top:1px solid rgba(194,242,228,.08)">
+<div style="border-bottom:1px solid rgba(194,242,228,.08)">
+<h3 style="margin:0"><button type="button" id="fq0" aria-expanded="false" aria-controls="fa0" class="faq-q" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.6rem 0;background:none;border:0;cursor:pointer;text-align:left;color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:clamp(1.125rem,2vw,1.3rem);letter-spacing:-.02em">¿Necesito saber de inteligencia artificial?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="1.8" stroke-linecap="round" style="flex:none;transition:transform .3s cubic-bezier(.22,1,.36,1);transform:rotate(0deg)"><path d="M12 5v14M5 12h14"></path></svg></button></h3>
+<div id="fa0" role="region" aria-labelledby="fq0" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1)"><div style="overflow:hidden"><p style="margin:0;padding:0 3rem 1.6rem 0;font-size:17px;line-height:1.6;color:#8FA9A0">No. Tú me cuentas cómo funciona tu negocio y yo me encargo de la parte técnica.</p></div></div>
+</div>
+<div style="border-bottom:1px solid rgba(194,242,228,.08)">
+<h3 style="margin:0"><button type="button" id="fq1" aria-expanded="false" aria-controls="fa1" class="faq-q" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.6rem 0;background:none;border:0;cursor:pointer;text-align:left;color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:clamp(1.125rem,2vw,1.3rem);letter-spacing:-.02em">¿Cuánto cuesta?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="1.8" stroke-linecap="round" style="flex:none;transition:transform .3s cubic-bezier(.22,1,.36,1);transform:rotate(0deg)"><path d="M12 5v14M5 12h14"></path></svg></button></h3>
+<div id="fa1" role="region" aria-labelledby="fq1" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1)"><div style="overflow:hidden"><p style="margin:0;padding:0 3rem 1.6rem 0;font-size:17px;line-height:1.6;color:#8FA9A0">Depende de lo que necesites. Después del diagnóstico gratis te paso una propuesta con precio cerrado.</p></div></div>
+</div>
+<div style="border-bottom:1px solid rgba(194,242,228,.08)">
+<h3 style="margin:0"><button type="button" id="fq2" aria-expanded="false" aria-controls="fa2" class="faq-q" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.6rem 0;background:none;border:0;cursor:pointer;text-align:left;color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:clamp(1.125rem,2vw,1.3rem);letter-spacing:-.02em">¿Cuánto tarda?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="1.8" stroke-linecap="round" style="flex:none;transition:transform .3s cubic-bezier(.22,1,.36,1);transform:rotate(0deg)"><path d="M12 5v14M5 12h14"></path></svg></button></h3>
+<div id="fa2" role="region" aria-labelledby="fq2" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1)"><div style="overflow:hidden"><p style="margin:0;padding:0 3rem 1.6rem 0;font-size:17px;line-height:1.6;color:#8FA9A0">Depende de la solución. En la propuesta te doy plazos concretos.</p></div></div>
+</div>
+<div style="border-bottom:1px solid rgba(194,242,228,.08)">
+<h3 style="margin:0"><button type="button" id="fq3" aria-expanded="false" aria-controls="fa3" class="faq-q" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.6rem 0;background:none;border:0;cursor:pointer;text-align:left;color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:clamp(1.125rem,2vw,1.3rem);letter-spacing:-.02em">¿Qué pasa si el asistente no sabe qué responder?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="1.8" stroke-linecap="round" style="flex:none;transition:transform .3s cubic-bezier(.22,1,.36,1);transform:rotate(0deg)"><path d="M12 5v14M5 12h14"></path></svg></button></h3>
+<div id="fa3" role="region" aria-labelledby="fq3" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1)"><div style="overflow:hidden"><p style="margin:0;padding:0 3rem 1.6rem 0;font-size:17px;line-height:1.6;color:#8FA9A0">Te avisa y te pasa la conversación para que la sigas tú.</p></div></div>
+</div>
+<div style="border-bottom:1px solid rgba(194,242,228,.08)">
+<h3 style="margin:0"><button type="button" id="fq4" aria-expanded="false" aria-controls="fa4" class="faq-q" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.6rem 0;background:none;border:0;cursor:pointer;text-align:left;color:#F3F7F4;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:clamp(1.125rem,2vw,1.3rem);letter-spacing:-.02em">¿Trabajas con negocios de Argentina y España?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#35C8B4" stroke-width="1.8" stroke-linecap="round" style="flex:none;transition:transform .3s cubic-bezier(.22,1,.36,1);transform:rotate(0deg)"><path d="M12 5v14M5 12h14"></path></svg></button></h3>
+<div id="fa4" role="region" aria-labelledby="fq4" style="display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.22,1,.36,1)"><div style="overflow:hidden"><p style="margin:0;padding:0 3rem 1.6rem 0;font-size:17px;line-height:1.6;color:#8FA9A0">Sí, todo el trabajo es online.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="mq" aria-hidden="true" style="position:relative;width:112%;margin:2rem 0 2rem -6%;height:64px;background:#E3FF00;transform:rotate(-2deg);overflow:hidden;display:flex;align-items:center;z-index:2">
+<div class="mqt" style="display:flex;width:max-content;animation:marquee 30s linear infinite">
+<span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">DIAGNÓSTICO GRATIS<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">RESPUESTA EN 24 H<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">DIAGNÓSTICO GRATIS<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">RESPUESTA EN 24 H<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">DIAGNÓSTICO GRATIS<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">RESPUESTA EN 24 H<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">DIAGNÓSTICO GRATIS<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">RESPUESTA EN 24 H<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">DIAGNÓSTICO GRATIS<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">RESPUESTA EN 24 H<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">DIAGNÓSTICO GRATIS<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">RESPUESTA EN 24 H<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">DIAGNÓSTICO GRATIS<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">RESPUESTA EN 24 H<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">DIAGNÓSTICO GRATIS<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span><span style="display:flex;align-items:center;gap:2rem;padding-right:2rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:#07130F;white-space:nowrap">RESPUESTA EN 24 H<span style="width:20px;height:20px;background:#07130F;mask-image:url(assets/isologo.png);-webkit-mask-image:url(assets/isologo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat"></span></span>
+</div>
+</div>
+
+<section id="cierre" aria-labelledby="end-t" style="position:relative;padding:clamp(6rem,12vw,10rem) 1.5rem;overflow:hidden;isolation:isolate">
+<div aria-hidden="true" style="position:absolute;left:50%;top:calc(100% - 160px);width:140%;height:700px;transform:translateX(-50%);border-radius:100%;background:radial-gradient(closest-side,#07130F 84%,rgba(33,244,189,.55));box-shadow:0 -20px 120px rgba(53,200,180,.14);z-index:-3;opacity:.7"></div>
+<svg id="circ-final" aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:-2;pointer-events:none"></svg>
+<div data-reveal="0" style="max-width:880px;margin:0 auto">
+<div class="gc">
+<div class="glow" aria-hidden="true"></div>
+<div class="glow-content" style="padding:clamp(2.5rem,6vw,4rem);text-align:center">
+<h2 id="end-t" style="margin:0 0 1.25rem;font-family:'Inter Tight',sans-serif;font-weight:800;font-size:clamp(2.25rem,4.5vw,3.75rem);letter-spacing:-.045em;line-height:1.02;color:#F3F7F4;text-wrap:balance">¿No sabes por dónde <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.05em;letter-spacing:-.01em">empezar</em>?</h2>
+<p style="margin:0 auto 2.5rem;max-width:560px;font-size:18px;line-height:1.6;text-wrap:balance">No necesitas saber nada de inteligencia artificial. Cuéntame cómo funciona tu negocio y te digo qué se puede mejorar.</p>
+<a id="cta-final" class="hv-lime mv btn-w" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:.65rem;background:#E3FF00;color:#07130F;font-family:'Inter Tight',sans-serif;font-weight:700;font-size:1.125rem;letter-spacing:-.03em;padding:1rem 1.75rem;border-radius:999px;transition:box-shadow .3s">Escríbeme por WhatsApp<svg class="mv-ic" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg></a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer style="position:relative;z-index:1;border-top:1px solid rgba(194,242,228,.06);padding:4rem 1.5rem">
+<div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem 2.5rem;font-size:14px;color:#8FA9A0">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem">
+<div role="img" aria-label="Rehobot" style="height:24px;width:110px;background:#35C8B4;mask-image:url(assets/logo.png);-webkit-mask-image:url(assets/logo.png);mask-size:contain;-webkit-mask-size:contain;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-position:left center;-webkit-mask-position:left center"></div>
+<span>Soluciones con IA para negocios</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:1.75rem">
+<a class="nl" href="https://www.instagram.com/rehobot.ai/" target="_blank" rel="noopener">Instagram</a>
+<a class="nl" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">WhatsApp</a>
+<span>© 2026 Rehobot</span>
+</div>
+</div>
+</footer>
+
+<a id="fab" class="fab" href="https://wa.me/5493513456198?text=Hola%20Santiago%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp" style="position:fixed;right:clamp(16px,2vw,24px);bottom:clamp(16px,2vw,24px);z-index:95;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;color:#F3F7F4;background:rgba(14,38,32,.55);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border:1px solid #35C8B4;box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;transform:scale(.8);pointer-events:none;transition:opacity .4s,transform .4s cubic-bezier(.22,1,.36,1)">
+<span aria-hidden="true" data-deco="" style="position:absolute;inset:-1px;border-radius:50%;border:2px solid #21F4BD;opacity:0;animation:ring 6s ease-out infinite"></span>
+<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg>
+<span class="tip" style="position:absolute;right:72px;white-space:nowrap;padding:.45rem .8rem;border-radius:999px;background:#0E2620;border:1px solid rgba(194,242,228,.1);font-size:13px;font-weight:500;color:#F3F7F4">Escríbeme</span>
+</a>
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>
